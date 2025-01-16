@@ -2,6 +2,17 @@ import streamlit as st
 import requests
 import pandas as pd
 
+# List of keys to exclude from the DataFrame
+exclude_keys = [
+    'notify', 'status', 'bucks', 'redirect', 'header_text', 'video', 'cta', 
+    'rating', 'basicFeedbackCash', 'basicFeedback', 'trending', 'fullSize', 
+    'detailFeedback', 'favorite', 'price_drop_text', 'question2', 'question_title', 
+    'units_left_text', 'no_rate_icon', 'no_rate_text', 'is_favorite', 'offer_text', 
+    'discover_text', 'subtitle', 'badge_icon', 'featured_icon', 'product_count', 
+    'summary', 'gift_text', 'free_gift_icon', 'placeholder_color', 'question', 
+    'line_key', 'discount', 'line_value'
+]
+
 # Function to make the API call
 def fetch_data(page_id):
     url = "https://route.smytten.com/discover_item/app/products/list"
@@ -53,7 +64,7 @@ if st.button('Fetch Products Data'):
 
     # Loop over pages from 0 to 12
     for page_id in range(13):
-        st.write(f"Fetching page {page_id}...")
+        #st.write(f"Fetching page {page_id}...")
         data = fetch_data(page_id)
 
         # Check if the 'content' and 'products' keys exist in the response
@@ -65,8 +76,10 @@ if st.button('Fetch Products Data'):
     # Convert the products list into a DataFrame
     if all_products:
         df = pd.DataFrame(all_products)
-        st.write("Products Data", df)
+
+        # Drop the unwanted columns based on the exclude_keys list
+        df_filtered = df.drop(columns=[key for key in exclude_keys if key in df.columns])
+
+        st.write("Filtered Products Data", df_filtered)
     else:
         st.write("No products data found.")
-
-
