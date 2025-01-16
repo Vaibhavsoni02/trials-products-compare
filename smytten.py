@@ -55,16 +55,18 @@ if st.button('Fetch Products Data'):
     for page_id in range(13):
         st.write(f"Fetching page {page_id}...")
         data = fetch_data(page_id)
-        
-        if 'products' in data:
-            all_products.extend(data['products'])
+
+        # Check if the 'content' and 'products' keys exist in the response
+        if 'content' in data and 'products' in data['content']:
+            all_products.extend(data['content']['products'])
         else:
             st.write(f"No products found on page {page_id}.")
-        
+
     # Convert the products list into a DataFrame
     if all_products:
         df = pd.DataFrame(all_products)
         st.write("Products Data", df)
     else:
         st.write("No products data found.")
+
 
