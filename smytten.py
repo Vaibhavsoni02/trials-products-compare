@@ -113,6 +113,25 @@ if st.button('Fetch Products Data'):
                             st.markdown(f"👤 {product['brand']}")
                         else:
                             st.write("Unknown brand")
+
+                        # Display Price
+                        if "price" in product and pd.notna(product["price"]):
+                            st.markdown(f"💲 Price: {product['price']}")
+                        else:
+                            st.write("Price not available")
+                        
+                        # Display Selling Price
+                        if "selling_price" in product and pd.notna(product["selling_price"]):
+                            st.markdown(f"💰 Selling Price: {product['selling_price']}")
+                        else:
+                            st.write("Selling price not available")
+                        
+                        # Display Size
+                        if "size" in product and pd.notna(product["size"]):
+                            st.markdown(f"📏 Size: {product['size']}")
+                        else:
+                            st.write("Size not available")
+
                 
             
     
