@@ -85,11 +85,9 @@ if st.button('Fetch Products Data'):
         st.write("No products data found.")
 
 
-# Set page layout
-st.set_page_config(layout="wide")
 
 # Title
-st.title("Winning Entries")
+st.title("Product grid")
 
      # Display products in a horizontal grid
 cols = st.columns(len(df_filtered))  # Create columns dynamically based on the number of items
