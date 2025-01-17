@@ -85,25 +85,36 @@ if st.button('Fetch Products Data'):
         # Title
         st.title("Product grid")
 
-        # Display products in a horizontal grid
-        cols = st.columns(4)  # Create columns dynamically based on the number of items
+        # Define the number of columns per row
+            columns_per_row = 4
         
-        for i, col in enumerate(cols):
-            with col:
-                # Access each row with .iloc[i]
-                product = df_filtered.iloc[i]
-                
-                # Display Image
-                st.image(product["image"], use_container_width=True)
-                
-                # Display Name
-                st.markdown(f"### {product['name']}")
-                
-                # Display Author
-                st.markdown(f"👤 {product['brand']}")
-                
-                
-
+            # Loop through the DataFrame in chunks of `columns_per_row`
+            for start_index in range(0, len(df_filtered), columns_per_row):
+                row_data = df_filtered.iloc[start_index:start_index + columns_per_row]
+        
+                # Create columns for this row
+                cols = st.columns(len(row_data))
+        
+                for col, (_, product) in zip(cols, row_data.iterrows()):
+                    with col:
+                        # Display Image
+                        if "image" in product and pd.notna(product["image"]):
+                            st.image(product["image"], use_container_width=True)
+                        else:
+                            st.write("No image available")
+        
+                        # Display Name
+                        if "name" in product and pd.notna(product["name"]):
+                            st.markdown(f"### {product['name']}")
+                        else:
+                            st.write("Unnamed product")
+        
+                        # Display Author/Brand
+                        if "brand" in product and pd.notna(product["brand"]):
+                            st.markdown(f"👤 {product['brand']}")
+                        else:
+                            st.write("Unknown brand")
+    
     else:
         st.write("No products data found.")
 
