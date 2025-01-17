@@ -83,3 +83,31 @@ if st.button('Fetch Products Data'):
         st.write("Filtered Products Data", df_filtered)
     else:
         st.write("No products data found.")
+
+
+# Set page layout
+st.set_page_config(layout="wide")
+
+# Title
+st.title("Winning Entries")
+
+     # Display products in a horizontal grid
+cols = st.columns(len(df_filtered))  # Create columns dynamically based on the number of items
+
+for i, col in enumerate(cols):
+    with col:
+        # Display Image
+        st.image(df_filtered[i]["image"], use_column_width=True)
+
+        # Display Name
+        st.markdown(f"### {df_filtered[i]['name']}")
+
+        # Display Author
+        st.markdown(f"👤 {df_filtered[i]['band']}")
+
+        # Display Source Link
+        st.markdown(f"[View source →]({df_filtered[i]['size']})", unsafe_allow_html=True)
+
+        # Display Tech Tags
+        for tech in df_filtered[i]["price"]:
+            st.markdown(f"<span style='background-color:#e8e8e8; padding:5px; border-radius:5px;'>{tech}</span>", unsafe_allow_html=True)
