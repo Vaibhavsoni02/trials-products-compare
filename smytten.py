@@ -86,7 +86,7 @@ if st.button('Fetch Products Data'):
         st.title("Product grid")
 
         # Display products in a horizontal grid
-        cols = st.columns(len(df_filtered)/12)  # Create columns dynamically based on the number of items
+        cols = st.columns(4)  # Create columns dynamically based on the number of items
         
         for i, col in enumerate(cols):
             with col:
