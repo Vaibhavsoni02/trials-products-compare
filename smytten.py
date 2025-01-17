@@ -102,15 +102,7 @@ if st.button('Fetch Products Data'):
                 # Display Author
                 st.markdown(f"👤 {product['brand']}")
                 
-                # Display Source Link
-                st.markdown(f"[View source →]({product['size']})", unsafe_allow_html=True)
                 
-                # Display Tech Tags
-                for tech in product["price"]:
-                    st.markdown(
-                        f"<span style='background-color:#e8e8e8; padding:5px; border-radius:5px;'>{tech}</span>",
-                        unsafe_allow_html=True
-                    )
 
     else:
         st.write("No products data found.")
