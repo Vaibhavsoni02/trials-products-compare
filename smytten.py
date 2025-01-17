@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import pandas as pd
+import json
 
 # List of keys to exclude from the DataFrame
 exclude_keys = [
