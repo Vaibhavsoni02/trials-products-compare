@@ -86,31 +86,31 @@ if st.button('Fetch Products Data'):
         st.title("Product grid")
 
         # Display products in a horizontal grid
-cols = st.columns(len(df_filtered))  # Create columns dynamically based on the number of items
-
-for i, col in enumerate(cols):
-    with col:
-        # Access each row with .iloc[i]
-        product = df_filtered.iloc[i]
+        cols = st.columns(len(df_filtered))  # Create columns dynamically based on the number of items
         
-        # Display Image
-        st.image(product["image"], use_column_width=True)
-        
-        # Display Name
-        st.markdown(f"### {product['name']}")
-        
-        # Display Author
-        st.markdown(f"👤 {product['brand']}")
-        
-        # Display Source Link
-        st.markdown(f"[View source →]({product['size']})", unsafe_allow_html=True)
-        
-        # Display Tech Tags
-        for tech in product["price"]:
-            st.markdown(
-                f"<span style='background-color:#e8e8e8; padding:5px; border-radius:5px;'>{tech}</span>",
-                unsafe_allow_html=True
-            )
+        for i, col in enumerate(cols):
+            with col:
+                # Access each row with .iloc[i]
+                product = df_filtered.iloc[i]
+                
+                # Display Image
+                st.image(product["image"], use_column_width=True)
+                
+                # Display Name
+                st.markdown(f"### {product['name']}")
+                
+                # Display Author
+                st.markdown(f"👤 {product['brand']}")
+                
+                # Display Source Link
+                st.markdown(f"[View source →]({product['size']})", unsafe_allow_html=True)
+                
+                # Display Tech Tags
+                for tech in product["price"]:
+                    st.markdown(
+                        f"<span style='background-color:#e8e8e8; padding:5px; border-radius:5px;'>{tech}</span>",
+                        unsafe_allow_html=True
+                    )
 
     else:
         st.write("No products data found.")
