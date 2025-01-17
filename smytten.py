@@ -94,7 +94,7 @@ if st.button('Fetch Products Data'):
                 product = df_filtered.iloc[i]
                 
                 # Display Image
-                st.image(product["image"], use_column_width=True)
+                st.image(product["image"], use_container_width=True)
                 
                 # Display Name
                 st.markdown(f"### {product['name']}")
