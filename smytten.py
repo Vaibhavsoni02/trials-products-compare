@@ -86,10 +86,9 @@ if st.button('Fetch Products Data'):
         st.title("Product grid")
 
         # Define the number of columns per row
-            columns_per_row = 4
-        
-            # Loop through the DataFrame in chunks of `columns_per_row`
-            for start_index in range(0, len(df_filtered), columns_per_row):
+        columns_per_row = 4
+        # Loop through the DataFrame in chunks of `columns_per_row`
+        for start_index in range(0, len(df_filtered), columns_per_row):
                 row_data = df_filtered.iloc[start_index:start_index + columns_per_row]
         
                 # Create columns for this row
@@ -114,6 +113,8 @@ if st.button('Fetch Products Data'):
                             st.markdown(f"👤 {product['brand']}")
                         else:
                             st.write("Unknown brand")
+                
+            
     
     else:
         st.write("No products data found.")
